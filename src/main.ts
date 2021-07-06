@@ -1,0 +1,15 @@
+import { NestFactory } from '@nestjs/core';
+
+import { AppModule } from './app.module';
+import { Constants } from './utils/constants';
+import { OpenApiService } from './utils/openapi.service';
+
+async function bootstrap() {
+  const app = await NestFactory.create(AppModule);
+  app.setGlobalPrefix('api');
+
+  OpenApiService.setup(Constants.SWAGGER_URL, app);
+
+  await app.listen(3000);
+}
+bootstrap();
