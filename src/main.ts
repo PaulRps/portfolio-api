@@ -5,7 +5,7 @@ import { Constants } from './utils/constants';
 import { OpenApiService } from './utils/openapi.service';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(AppModule, { cors: true });
   app.setGlobalPrefix('api');
 
   OpenApiService.setup(Constants.SWAGGER_URL, app);
