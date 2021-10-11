@@ -22,6 +22,9 @@
   <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
   [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
+## Project Description
+A NestJs REST API, hosted in Heroku, for providing data to an Angular application hosted in Netlify. 
+
 ## Description
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
