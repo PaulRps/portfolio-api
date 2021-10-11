@@ -26,6 +26,14 @@ export class GithubRepositoryMapper {
 
     private async buildTechnologiesField(p: any): Promise<string[]> {
         const languages = await this.githubService.getLanguages(p.languages_url)
-        return Object.keys(languages)
+        const techs = Object.keys(languages)
+        techs.push(...p.topics)
+        
+        const result = new Set<string>()        
+        techs.forEach(element => {            
+            result.add(element.toLowerCase())
+        });
+
+        return [...result]
     }
 }
