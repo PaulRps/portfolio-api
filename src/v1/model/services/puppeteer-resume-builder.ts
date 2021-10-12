@@ -9,7 +9,7 @@ export interface ResumeBuilder {
 export class PuppeteerResumeBuilder implements ResumeBuilder {
 
     async build(html: string) {
-        const browser = await puppeteer.launch();
+        const browser = await puppeteer.launch({ args: ['--no-sandbox'] });
         const page = await browser.newPage();
 
         await page.setContent(html);
