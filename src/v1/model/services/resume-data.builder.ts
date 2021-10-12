@@ -10,25 +10,23 @@ export interface ResumeDataBuilder {
 @Injectable()
 export class ResumeDataBuilderService implements ResumeDataBuilder {
     constructor(
-        private readonly expService: LinkedinService,
         private readonly likedinService: LinkedinService
     ) { }
 
     async build(): Promise<ResumeTemplateDto> {
-        const exps = await this.expService.getExperience()
+        const exps = await this.likedinService.getExperience()
         const edu = await this.likedinService.getEducation()
+        const likedinProfile = await this.likedinService.getProfile()
+
         return {
-            name: 'Paulo Ricardo Pereira da Silva',
-            email: 'paulosilvajp0@gmail.com',
-            location: {
-                city: 'João Pessoa',
-                state: 'PB',
-            },
+            name: likedinProfile.fulllName,
+            email: likedinProfile.email,
+            location: likedinProfile.location,
             linkedin: {
-                url: 'https://www.linkedin.com/in/paulo-silva-a981a9a7/'
+                url: likedinProfile.linkedinUrl
             },
             github: {
-                url: 'http://www.github.com/paulrps'
+                url: likedinProfile.githubUrl
             },
             description: 'I am a full-stack software engineer especially interested in building, scaling up and shipping magical and reliable applications.',
             experiences: exps,
@@ -45,7 +43,7 @@ export class ResumeDataBuilderService implements ResumeDataBuilder {
             ],
             interests: [
                 'Learn innovative technologies',
-                'Design complex testable systems with all kind of techs of a microservices environment',
+                'Design complex testable systems with all kind of techs from a microservices environment',
                 'Work with amazing people',
                 'Improve english knowledge',
                 'Be a better person and software engineer'

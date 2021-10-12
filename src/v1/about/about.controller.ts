@@ -10,4 +10,9 @@ export class AboutController {
   async getResume(@Res() res: Response) {
     this.aboutService.buildPdf(res)
   }
+
+  @Get()
+  async getAbout() {
+    return this.aboutService.getAbout()
+  }
 }

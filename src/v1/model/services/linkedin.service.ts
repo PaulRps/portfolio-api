@@ -1,9 +1,24 @@
 import { Injectable } from "@nestjs/common";
 import { Education } from "../dto/education.dto";
 import { JobExperience } from "../dto/job-experience.dto";
+import { LinkedinProfileDto } from "../dto/linkedin-profile.dto";
 
 @Injectable()
 export class LinkedinService {
+    async getProfile(): Promise<LinkedinProfileDto> {
+        return {
+            fulllName: 'Paulo Ricardo Pereira da Silva',
+            shortName: 'Paulo Silva',
+            jobPosition: 'Full Stack Software Engineer',
+            email: 'paulosilvajp0@gmail.com',
+            location: {
+                city: 'João Pessoa',
+                state: 'PB',
+            },
+            linkedinUrl: 'https://www.linkedin.com/in/paulo-silva-a981a9a7/',
+            githubUrl: 'http://www.github.com/paulrps'
+        }
+    }
 
     async getEducation(): Promise<Education[]> {
         return [
