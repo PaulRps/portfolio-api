@@ -43,7 +43,7 @@ export class LinkedinService {
         beginAt: 'nov 2012',
         endAt: 'jun 2017',
         description:
-          'I have been member in the Programa de Educação Tutorial group for about 5 years, there i have  done teaching, researching and extras activities. Also, i have participated initiation scientific program and i have worked in digital image processing with fingerprint singularities extraction for 2 years.'
+          'I was member in the Programa de Educação Tutorial group for about 5 years, there i did teaching, researching and extras activities. Also, i participated initiation scientific program and i worked in digital image processing with fingerprint singularities extraction for 2 years.'
       }
     ]
   }
