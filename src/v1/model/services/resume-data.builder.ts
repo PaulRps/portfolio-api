@@ -28,6 +28,9 @@ export class ResumeDataBuilderService implements ResumeDataBuilder {
             github: {
                 url: likedinProfile.githubUrl
             },
+            portfolio: {
+                url: likedinProfile.portfolioUrl
+            },
             description: 'I am a full-stack software engineer especially interested in building, scaling up and shipping magical and reliable applications.',
             experiences: exps,
             technologies: [

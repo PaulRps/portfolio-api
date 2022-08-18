@@ -16,7 +16,8 @@ export class LinkedinService {
                 state: 'PB',
             },
             linkedinUrl: 'https://www.linkedin.com/in/paulo-silva-a981a9a7/',
-            githubUrl: 'http://www.github.com/paulrps'
+            githubUrl: 'http://www.github.com/paulrps',
+            portfolioUrl: "https://paulrps-dev.netlify.app/"
         }
     }
 
@@ -42,7 +43,7 @@ export class LinkedinService {
                 beginAt: 'Dec 2020',
                 endAt: 'Present',
                 description: [
-                    'I have created a brand new mobile product about digital identity. I have developed for Android platform and i have integrated external services like Firebase, Cloud Functions, biometric REST APIs and SDKs. I have used some technologies like Google Cloud Platform to launch REST APIs in Docker containers and I have designed a messenger architecture to integrate Firebase Cloud Message and a NodeJs API through HTTP Cloud Functions.',
+                    'I have created a brand new mobile product about digital identity. I have developed for Android platform and i have integrated external services like Firebase, Cloud Functions, biometric REST APIs and SDKs. I have used some technologies like Google Cloud Platform to launch REST APIs in Docker containers and I have designed a messenger architecture to integrate Firebase Cloud Message and a NodeJs API through HTTP Cloud Functions. Also, i have created (with SOLID principles) a tested backend for frontend (BFF) NestJs REST API to provide data to a Flutter mobile app.',
                     'I have worked in a team with an agile environment and SCRUM and i have been mainly responsible to guide the mobile development in the team but it is not limited to it.'
                 ]
             },

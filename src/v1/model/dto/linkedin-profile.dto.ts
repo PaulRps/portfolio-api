@@ -7,5 +7,6 @@ export interface LinkedinProfileDto {
     email: string
     linkedinUrl: string
     githubUrl: string
+    portfolioUrl: string
     location: Location
 }
