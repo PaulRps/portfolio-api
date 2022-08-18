@@ -13,7 +13,8 @@ export class LinkedinService {
       email: 'paulosilvajp0@gmail.com',
       location: {
         city: 'João Pessoa',
-        state: 'PB'
+        state: 'PB',
+        country: 'Brazil'
       },
       linkedinUrl: 'https://www.linkedin.com/in/paulo-silva-a981a9a7/',
       githubUrl: 'http://www.github.com/paulrps',
