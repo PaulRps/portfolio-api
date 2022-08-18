@@ -32,8 +32,8 @@ export class ResumeDataBuilderService implements ResumeDataBuilder {
         'I am a full-stack software engineer especially interested in building, scaling up and shipping magical and reliable applications.',
       experiences: exps,
       technologies: [
-        'Languages: Java, Kotlin, JavaScript, TypeScript',
-        'Technologies: 	Spring (Boot, Security, Data), Angular, MongoDB, Microsoft SQL Server, Postgres, FireStore, Google Cloud Platform, Mongo Realm, Firebase, Git, Bitbucket, Gitlab, Docker, Redis, Jira'
+        'Languages (experience in years): Java (~3), Kotlin (~2), JavaScript (~4), TypeScript (~4)',
+        'Technologies: 	Spring (Boot, Security, Data), NestJs, Angular, MongoDB, Microsoft SQL Server, Postgres, FireStore, Google Cloud Platform, Mongo Realm, Firebase, Git, Bitbucket, Gitlab, Docker, Redis, Jira'
       ],
       education: edu,
       projects: [
