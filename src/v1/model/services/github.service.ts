@@ -1,15 +1,17 @@
-import { Injectable } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
-import { FetchService } from 'src/utils/fetch.service';
+import {Injectable} from '@nestjs/common'
+import {ConfigService} from '@nestjs/config'
+import {FetchService} from 'src/utils/fetch.service'
 
-const headers = { 'Authorization': 'Basic ' }
+const headers = {Authorization: 'Basic '}
 
 @Injectable()
 export class GithubService {
-  readonly url: string;
+  readonly url: string
   constructor(private configService: ConfigService) {
-    this.url = configService.get('github.url', { infer: true })
-    headers.Authorization = `Basic ${configService.get('GIT_TOKEN', { infer: true })}`
+    this.url = configService.get('github.url', {infer: true})
+    headers.Authorization = `Basic ${configService.get('GIT_TOKEN', {
+      infer: true
+    })}`
   }
 
   async getProfile(): Promise<any> {
@@ -17,7 +19,10 @@ export class GithubService {
   }
 
   async getRepos(): Promise<any[]> {
-    return FetchService.get<any[]>(`${this.url}/repos?sort=created&direction=desc`, headers)
+    return FetchService.get<any[]>(
+      `${this.url}/repos?sort=created&direction=desc`,
+      headers
+    )
   }
 
   async getOwnedRepos(): Promise<any[]> {
@@ -29,6 +34,6 @@ export class GithubService {
   }
 
   private excludeForkedRepos(repos: any[]): any[] {
-    return repos.filter((rep) => !Boolean(rep.fork));
+    return repos.filter((rep) => !Boolean(rep.fork))
   }
 }
