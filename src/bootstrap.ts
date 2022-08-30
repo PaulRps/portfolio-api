@@ -1,14 +1,10 @@
 import serverless = require('serverless-http')
-import {NestFactory} from '@nestjs/core'
-import {AppModule} from './app.module'
-import {Constants} from './utils/constants'
-import {OpenApiService} from './utils/openapi.service'
-import { INestApplication } from '@nestjs/common'
+import { NestFactory } from '@nestjs/core'
+import { NestExpressApplication } from '@nestjs/platform-express'
+import { AppModule } from './app.module'
 
-export const bootstrapApi = async (): Promise<INestApplication> => {
-  const app = await NestFactory.create(AppModule, {cors: true})
-
-  OpenApiService.setup(Constants.SWAGGER_URL, app)
+export const bootstrapApi = async (): Promise<NestExpressApplication> => {
+  const app = await NestFactory.create<NestExpressApplication>(AppModule, {cors: true})
 
   return app
 }
