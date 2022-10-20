@@ -1,7 +1,7 @@
 {
   "name": "portfolio-api",
   "version": "0.0.1",
-  "description": "",
+  "description": "api to provide information about me and personal projects",
   "author": "",
   "private": true,
   "license": "UNLICENSED",
