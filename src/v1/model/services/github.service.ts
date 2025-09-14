@@ -2,14 +2,14 @@ import {Injectable} from '@nestjs/common'
 import {ConfigService} from '@nestjs/config'
 import {FetchService} from 'src/utils/fetch.service'
 
-const headers = {Authorization: 'Basic '}
+const headers = {Authorization: 'BEARER '}
 
 @Injectable()
 export class GithubService {
   readonly url: string
   constructor(private configService: ConfigService) {
     this.url = configService.get('github.url', {infer: true})
-    headers.Authorization = `Basic ${configService.get('GIT_TOKEN', {
+    headers.Authorization = `BEARER ${configService.get('GIT_TOKEN', {
       infer: true
     })}`
   }
@@ -30,7 +30,14 @@ export class GithubService {
   }
 
   async getLanguages(projectLanguageUr: string): Promise<any> {
-    return FetchService.get<any>(projectLanguageUr, headers)
+    try {
+      return FetchService.get<any>(projectLanguageUr, headers)
+    } catch (e) {
+      console.log(e);
+      throw e
+      
+    }
+    
   }
 
   private excludeForkedRepos(repos: any[]): any[] {
