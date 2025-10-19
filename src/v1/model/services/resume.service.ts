@@ -4,6 +4,8 @@ import {Readable} from 'stream'
 import {HtmlTemplateBuilder} from './handlebar-html-template.builder'
 import {ResumeBuilder} from './puppeteer-resume-builder'
 import {ResumeDataBuilder} from './resume-data.builder'
+import {Education} from '../dto/education.dto'
+import {JobExperience} from '../dto/job-experience.dto'
 
 @Injectable()
 export class ResumeService {
@@ -15,9 +17,20 @@ export class ResumeService {
     private readonly resumeDataBuilder: ResumeDataBuilder
   ) {}
 
-  async buildPdf(res: Response) {
-    this.resumeDataBuilder
-      .build()
+  async buildPdf(
+    res: Response,
+    body?: {
+      experiences: JobExperience[]
+      education: Education[]
+      technologies: string[]
+      interests: string[]
+      projects: string[]
+    }
+  ) {
+    ;(body
+      ? this.resumeDataBuilder.buildWithBody(body)
+      : this.resumeDataBuilder.build()
+    )
       .then((data) => (data ? data : Promise.reject()))
       .then((data) => this.htmlBuilder.build(data))
       .then((html) => (html ? html : Promise.reject()))
