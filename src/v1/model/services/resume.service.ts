@@ -6,6 +6,9 @@ import {ResumeBuilder} from './puppeteer-resume-builder'
 import {ResumeDataBuilder} from './resume-data.builder'
 import {Education} from '../dto/education.dto'
 import {JobExperience} from '../dto/job-experience.dto'
+import {ResumeRepository} from '../repository/resume.repository'
+import {Resume} from '../schema/resume.schema'
+import {ResumeTemplateDto} from '../dto/resume-template.dto'
 
 @Injectable()
 export class ResumeService {
@@ -14,7 +17,8 @@ export class ResumeService {
     @Inject('HtmlTemplateBuilder')
     private readonly htmlBuilder: HtmlTemplateBuilder,
     @Inject('ResumeDataBuilder')
-    private readonly resumeDataBuilder: ResumeDataBuilder
+    private readonly resumeDataBuilder: ResumeDataBuilder,
+    private readonly resumeRepository: ResumeRepository
   ) {}
 
   async buildPdf(
@@ -27,11 +31,19 @@ export class ResumeService {
       projects: string[]
     }
   ) {
-    ;(body
-      ? this.resumeDataBuilder.buildWithBody(body)
-      : this.resumeDataBuilder.build()
-    )
+    const dataPromise = body
+      ? this.resumeDataBuilder
+          .buildWithBody(body)
+          .then((data) =>
+            this.resumeRepository.upsert(this.toResumeDocument(data))
+          )
+      : this.resumeRepository.find()
+
+    const constData = await this.resumeDataBuilder.build()
+
+    dataPromise
       .then((data) => (data ? data : Promise.reject()))
+      .then((resume) => this.toResumeTemplateDto(resume, constData))
       .then((data) => this.htmlBuilder.build(data))
       .then((html) => (html ? html : Promise.reject()))
       .then((html) => this.resumeBuilder.build(html))
@@ -47,5 +59,35 @@ export class ResumeService {
 
         stream.pipe(res)
       })
+  }
+
+  private toResumeTemplateDto(
+    resume: Resume,
+    constData: ResumeTemplateDto
+  ): ResumeTemplateDto {
+    return {
+      name: constData.name,
+      email: constData.email,
+      location: constData.location,
+      linkedin: constData.linkedin,
+      github: constData.github,
+      portfolio: constData.portfolio,
+      description: constData.description,
+      experiences: resume.experiences,
+      technologies: resume.skills,
+      education: resume.education,
+      projects: resume.projects,
+      interests: resume.interests
+    }
+  }
+
+  private toResumeDocument(resume: ResumeTemplateDto): Resume {
+    return {
+      experiences: resume.experiences,
+      education: resume.education,
+      skills: resume.technologies,
+      interests: resume.interests,
+      projects: resume.projects
+    }
   }
 }

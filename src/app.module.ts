@@ -1,6 +1,7 @@
 import {Module} from '@nestjs/common'
 import {ConfigModule} from '@nestjs/config'
 import {APP_FILTER} from '@nestjs/core'
+import {MongooseModule} from '@nestjs/mongoose'
 import env from './core/config/env'
 import {CustomExceptionsFilter} from './core/exceptions/exception.filter'
 import {UtilsModule} from './utils/utils.module'
@@ -21,6 +22,12 @@ import {ProjectsModule} from './v1/projects/projects.module'
     ConfigModule.forRoot({
       isGlobal: true,
       load: [env]
+    }),
+    MongooseModule.forRootAsync({
+      useFactory: async () => ({
+        uri: process.env.MONGO_URL,
+        useFindAndModify: false
+      })
     })
   ],
   providers: [
