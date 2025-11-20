@@ -15,8 +15,6 @@ export class AboutController {
 
   @Get()
   async getAbout(): Promise<LinkedinProfileDto> {
-    const sleep =() => new Promise((resolve) => setTimeout(resolve, 50000))
-    await sleep()
     return this.aboutService.getAbout()
   }
 
