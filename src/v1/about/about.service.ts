@@ -5,6 +5,7 @@ import {LinkedinService} from '../model/services/linkedin.service'
 import {ResumeService} from '../model/services/resume.service'
 import {Education} from '../model/dto/education.dto'
 import {JobExperience} from '../model/dto/job-experience.dto'
+import {ResumeDataDto} from '../model/dto/resume-data.dto'
 
 @Injectable()
 export class AboutService {
@@ -15,18 +16,16 @@ export class AboutService {
 
   buildPdf(
     res: Response,
-    body?: {
-      experiences: JobExperience[]
-      education: Education[]
-      technologies: string[]
-      interests: string[]
-      projects: string[]
-    }
+    body?: ResumeDataDto
   ) {
     this.resumeService.buildPdf(res, body)
   }
 
   async getAbout(): Promise<LinkedinProfileDto> {
     return this.linkedinService.getProfile()
+  }
+
+  getResumeData(): Promise<ResumeDataDto> {
+    return this.resumeService.getResumeData()
   }
 }
