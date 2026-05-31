@@ -9,7 +9,7 @@ export class LinkedinService {
     return {
       fulllName: 'Paulo Ricardo Pereira da Silva',
       shortName: 'Paulo Silva',
-      jobPosition: 'Full Stack Software Engineer',
+      jobPosition: 'Senior Software Engineer',
       email: 'paulosilvajp0@gmail.com',
       location: {
         city: 'João Pessoa',
